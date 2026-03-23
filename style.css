@@ -1,0 +1,56 @@
+/* CSS Variables for Theme System */
+:root 
+{
+    --bg-color: #ffffff;
+    --text-color: #222222;
+    --navbar-bg: #1a1a1a;
+    --navbar-text: #ffffff;
+}
+
+/* Centers text content horizontally */
+.center 
+{
+    text-align: center;
+}
+
+/* Displays element as a block and centers it horizontally on the page */
+.center-block 
+{
+    display: block;
+    margin: 0 auto;
+}
+
+/* Styles the navigation bar with background and centered text */
+.navbar 
+{
+    background-color: var(--navbar-bg);
+    padding: 15px;
+    text-align: center; 
+}
+
+/* Styles navigation links with theme colors, spacing, and removes underlines */
+.navbar a 
+{
+    color: var(--navbar-text);
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+/* Hides elements by setting display to none */
+.hidden 
+{
+    display: none;
+}
+
+/* Positions theme buttons in top right corner above navbar */
+.theme-buttons 
+{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 100;
+}
+
+.theme-buttons button {
+    margin-right: 5px;
+}
