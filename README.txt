@@ -4,7 +4,7 @@ Portfolio Website - HTML, CSS, and JavaScript
 1.Overview
 
 This is a multi page personal website created using HTML, CSS, and JavaScript.
-I reused assignment 2 when I made this.
+I reused assignment 2 when I made this. This my site https://danekweaga.github.io/A3-QM519030/
 
 Pages included:
 - index.html (Home)
