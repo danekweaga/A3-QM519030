@@ -11,11 +11,13 @@ document.addEventListener("DOMContentLoaded", function()
             <a href="contact.html">Contact</a>
         </nav>`;
     
-    // Adds a click event listener to the profile picture that shows an alert
-    document.getElementById("profilePic").addEventListener("click", function() 
-    {
-        alert("This is my profile picture!");
-    });
+    const profilePic = document.getElementById("profilePic");
+    if (profilePic) {
+        profilePic.addEventListener("click", function() 
+        {
+            alert("This is my profile picture!");
+        });
+    }
 });
 
 // Displays a welcome alert message to greet the user
@@ -51,7 +53,10 @@ const themes = {
         bgColor: "#ffffff",
         textColor: "#222222",
         navbarBg: "#1a1a1a",
-        navbarText: "#ffffff"
+        navbarText: "#ffffff",
+        tableHeaderBg: "#e8e8e8",
+        linkColor: "#1565c0",
+        linkHover: "#0d47a1"
     },
 
     dark: 
@@ -59,7 +64,10 @@ const themes = {
         bgColor: "#1a1a1a",
         textColor: "#e8e8e8",
         navbarBg: "#0d0d0d",
-        navbarText: "#e8e8e8"
+        navbarText: "#e8e8e8",
+        tableHeaderBg: "#2f2f2f",
+        linkColor: "#90caf9",
+        linkHover: "#bbdefb"
     },
 
     blue: 
@@ -67,7 +75,10 @@ const themes = {
         bgColor: "#0f3460",
         textColor: "#e8f4f8",
         navbarBg: "#16213e",
-        navbarText: "#00d4ff"
+        navbarText: "#00d4ff",
+        tableHeaderBg: "#1a4a7a",
+        linkColor: "#93c5fd",
+        linkHover: "#ffffff"
     }
 };
 
@@ -81,6 +92,9 @@ function applyTheme(themeName)
         document.documentElement.style.setProperty("--text-color", theme.textColor);
         document.documentElement.style.setProperty("--navbar-bg", theme.navbarBg);
         document.documentElement.style.setProperty("--navbar-text", theme.navbarText);
+        document.documentElement.style.setProperty("--table-header-bg", theme.tableHeaderBg);
+        document.documentElement.style.setProperty("--link-color", theme.linkColor);
+        document.documentElement.style.setProperty("--link-hover", theme.linkHover);
         document.body.style.backgroundColor = theme.bgColor;
         document.body.style.color = theme.textColor;
     }

@@ -5,6 +5,31 @@
     --text-color: #222222;
     --navbar-bg: #1a1a1a;
     --navbar-text: #ffffff;
+    --table-header-bg: #e8e8e8;
+    --link-color: #1565c0;
+    --link-hover: #0d47a1;
+}
+
+/* UNIVERSAL selector (*) — box model for all elements */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Main content links: no underline, color changes on hover */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--link-hover);
+}
+
+/* Space for fixed theme bar at bottom */
+body {
+    padding-bottom: 4.25rem;
 }
 
 /* Centers text content horizontally */
@@ -17,7 +42,70 @@
 .center-block 
 {
     display: block;
+    margin: 0.5rem auto;
+}
+
+/* Images: spacing without a box border (borders looked like extra lines) */
+img {
+    margin: 0.35rem;
+    padding: 0;
+    border: none;
+    box-sizing: content-box;
+    vertical-align: middle;
+}
+
+/* Lists: clearer spacing and indentation (site-wide) */
+ul, ol {
+    margin: 0.5rem 0 1.25rem;
+    padding-left: 1.75rem;
+}
+
+li {
+    margin: 0.35rem 0;
+    line-height: 1.45;
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+    margin: 0.35rem 0 0.65rem;
+}
+
+/* Home page hero: heading, short line, and photo — minimal spacing only */
+.hero {
+    text-align: center;
+    padding: 0 1rem 1.25rem;
+}
+
+.hero h1 {
+    margin: 0.75rem 0 0.5rem;
+}
+
+.hero-intro {
     margin: 0 auto;
+    max-width: 32rem;
+}
+
+/* Education page table: borders, spacing, readable cells */
+.education-table {
+    width: 100%;
+    max-width: 56rem;
+    margin: 0.75rem auto 1.5rem;
+    border-collapse: collapse;
+    border: 1px solid #999;
+}
+
+.education-table th,
+.education-table td {
+    border: 1px solid #999;
+    padding: 0.6rem 0.85rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+.education-table thead th {
+    background-color: var(--table-header-bg);
 }
 
 /* Styles the navigation bar with background and centered text */
@@ -28,12 +116,17 @@
     text-align: center; 
 }
 
-/* Styles navigation links with theme colors, spacing, and removes underlines */
-.navbar a 
+/* CHILD combinator (>) — direct <a> children of .navbar only */
+.navbar > a 
 {
     color: var(--navbar-text);
     margin: 0 10px;
     text-decoration: none;
+}
+
+.navbar > a:hover {
+    color: var(--navbar-text);
+    opacity: 0.85;
 }
 
 /* Hides elements by setting display to none */
@@ -42,15 +135,154 @@
     display: none;
 }
 
-/* Positions theme buttons in top right corner above navbar */
-.theme-buttons 
-{
-    position: absolute;
-    top: 10px;
-    right: 10px;
+/* Theme switcher: fixed strip at the bottom of the viewport */
+.theme-buttons {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.65rem 1rem;
+    background-color: var(--navbar-bg);
+    border-top: 1px solid white;
+    box-shadow: 0 -4px 12px black;
 }
 
 .theme-buttons button {
-    margin-right: 5px;
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--navbar-text);
+    border-radius: 6px;
+    background-color: transparent;
+    color: var(--navbar-text);
+    font: inherit;
+    cursor: pointer;
+}
+
+.theme-buttons button:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.theme-buttons button:active {
+    opacity: 0.9;
+}
+
+/* Contact form: spacing, borders, readable layout */
+.contact-form {
+    max-width: 24rem;
+    margin: 1.5rem auto 0;
+    padding: 0 0.5rem;
+    text-align: left;
+}
+
+.contact-form p {
+    margin: 0 0 1rem;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 0.35rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem 0.65rem;
+    border: 1px solid #999;
+    font: inherit;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+.contact-form textarea {
+    min-height: 8rem;
+    vertical-align: top;
+    resize: vertical;
+}
+
+/* Show a clear ring when a field has keyboard or click focus (Tab navigation, accessibility) */
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: 2px solid var(--text-color);
+    outline-offset: 2px;
+}
+
+/* ADJACENT sibling (+) — first <p> directly after a centered <h2> */
+h2.center + p {
+    margin-top: 0.15rem;
+}
+
+/* GENERAL sibling (~) — tables after the page <h1> */
+h1.center ~ table {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* ATTRIBUTE — external text links only (not icon links, avoids a line under images) */
+a[target="_blank"]:not(:has(img)) {
+    border-bottom: 1px dotted var(--link-color);
+}
+
+/* ATTRIBUTE — download links */
+a[download] {
+    font-weight: 600;
+}
+
+/* PSEUDO-ELEMENT — first letter of main page titles */
+h1.center::first-letter {
+    font-size: 1.15em;
+}
+
+/* PSEUDO-ELEMENT — selected text */
+::selection {
+    background-color: rgba(21, 101, 192, 0.28);
+    color: var(--text-color);
+}
+
+/* Responsive: stack table columns; scale media */
+@media (max-width: 900px) {
+
+    table,
+    thead,
+    tbody,
+    tr,
+    th,
+    td {
+        display: block;
+        width: 100%;
+    }
+
+    tr {
+        margin-bottom: 1rem;
+    }
+
+    iframe,
+    video {
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+}
+
+@media (max-width: 600px) {
+
+    body {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .navbar {
+        padding: 12px 8px;
+        line-height: 1.7;
+    }
+
+    .hero img,
+    img.center-block {
+        max-width: 100%;
+        height: auto;
+    }
 }
